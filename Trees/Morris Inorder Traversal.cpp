@@ -36,6 +36,7 @@ if(leftChild->right == NULL)
     curr = curr->left;
 }
 else{
+    // to avoid revisiting of nodes 
     leftChild->right = NULL;
     ans.push_back(curr->val);
     curr = curr->right;
