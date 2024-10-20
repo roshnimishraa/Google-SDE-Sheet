@@ -24,7 +24,7 @@ class Solution {
         if(root == NULL){
             return 0;
         }
-        // left node return its value 
+        // leaf node return its value 
         if(root->left == NULL && root->right == NULL)
         {
             return root->data;
