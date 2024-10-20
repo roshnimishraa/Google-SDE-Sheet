@@ -1,3 +1,6 @@
+Time Complexity: O(nlogn)
+Space Complexity: O(1)
+
 class Solution {
   public:
     // Function to find the minimum number of platforms required at the
