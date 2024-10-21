@@ -24,7 +24,8 @@ public:
 
 ### Approach 2: 
 
-Time Complexity: O(n) 
+Time Complexity: O(n), The operations inside the loop (checking if an element exists in the unordered map and updating it)
+have an average time complexity of O(1), thanks to the unordered map's hash-based implementation.
 Auxiliary Space: O(n)
 
 class Solution {
