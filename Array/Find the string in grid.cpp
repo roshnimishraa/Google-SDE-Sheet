@@ -57,3 +57,73 @@ public:
 
 ### Approach 2:
 
+Time Complexity:  O(row*col*8*k) since the time complexity of the searchWord method is linear in the size of the grid (row x col) and the length of the word (k).
+Space Complexity:  O(row*col), The space complexity mainly consists of the auxiliary space used for the ans list.
+
+
+class Solution {
+    private:
+
+    bool helper(vector<vector<char>> &grid, int row, int col, string &word, 
+    vector<int> &x, vector<int> &y)
+    {
+        int n = grid.size();
+        int m = grid[0].size();
+        
+        if(grid[row][col] != word[0])
+        {
+            return false;    
+        }
+        int len = word.size();
+        
+     // Search word in all 8 directions starting from (row,col)
+        for(int dir=0;dir<8;dir++)
+        {
+            int newX = row + x[dir];
+            int newY = col + y[dir];
+            int k;
+    //first character is already checked match remaining characters 
+            for( k=1;k<len;k++)
+            {
+                if(newX >= n || newX<0 || newY>=m || newY<0)
+                break;
+                
+                // if not matched 
+                if(grid[newX][newY] != word[k])
+                break;
+                
+                // moving in particular direction
+                newX += x[dir];
+                newY += y[dir];
+            }
+            
+        // if all character matched then value of must 
+        // be equal to length of word
+        
+        if(k == len)
+        return true;
+        }
+        return false;
+    }
+public:
+	vector<vector<int>>searchWord(vector<vector<char>>grid, string word)
+	{
+	   int n = grid.size();
+	   int m = grid[0].size();
+	  	vector<int>x = { -1, -1, -1, 0, 0, 1, 1, 1 };
+		vector<int>y = { -1, 0, 1, -1, 1, -1, 0, 1 };
+		
+	   vector<vector<int>> ans;
+	   for(int i=0;i<n;i++)
+	   {
+	       for(int j=0;j<m;j++)
+	       {
+	           if(helper(grid,i,j,word,x,y))
+	           {
+	               ans.push_back({i,j});
+	           }
+	       }
+	   }
+	   return ans;
+	}
+};
